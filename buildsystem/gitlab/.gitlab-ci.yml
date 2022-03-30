@@ -33,35 +33,14 @@ stages:
         # a medialib build
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
         changes:
-          - medialibrary/**/*
           - buildsystem/**/*
         when: never
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
         changes:
           - libvlc/**/*
+      - if: '$CI_PIPELINE_SOURCE == "push"'
     variables:
         EXTRA_BUILD_PARAM: -l
-
-# rebuild the medialibrary JNI component
-# This implies rebuilding VLC beforehand
-.build-ml-base:
-    extends: .build-all-base
-    rules:
-      - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-        changes:
-          - medialibrary/**/*
-          - buildsystem/**/*
-    variables:
-        EXTRA_BUILD_PARAM: -ml
-
-# vlc-android app only: don't rebuild everything but use a published artifact
-continuous-app-build:
-    extends: .build-all-base
-    script:
-        - ./buildsystem/compile.sh --init
-        - ./gradlew assembleDebug
-    rules:
-      - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 #################################
 # Template config instantiation #
@@ -87,71 +66,7 @@ build-libvlc-x86_64:
     variables:
         ARCH: x86_64
 
-build-ml-arm64:
-    extends: .build-ml-base
-    variables:
-        ARCH: arm64
-
-build-ml-armv7:
-    extends: .build-ml-base
-    variables:
-        ARCH: arm
-
-build-ml-x86:
-    extends: .build-ml-base
-    variables:
-        ARCH: x86
-
-build-ml-x86_64:
-    extends: .build-ml-base
-    variables:
-        ARCH: x86_64
-
-# Nightly builds: build native & app code, and ship the APK as artifact
-nightly-arm64:
-    extends: .build-all-base
-    rules:
-        - if: '$CI_PIPELINE_SOURCE == "schedule"'
-    variables:
-        ARCH: arm64
-    artifacts:
-        paths:
-            - application/app/build/outputs/apk/dev/VLC-Android-*.apk
-        expire_in: 2 weeks
-
-nightly-armv7:
-    extends: .build-all-base
-    rules:
-        - if: '$CI_PIPELINE_SOURCE == "schedule"'
-    variables:
-        ARCH: arm
-    artifacts:
-        paths:
-            - application/app/build/outputs/apk/dev/VLC-Android-*.apk
-        expire_in: 2 weeks
-
-nightly-x86:
-    extends: .build-all-base
-    rules:
-        - if: '$CI_PIPELINE_SOURCE == "schedule"'
-    variables:
-        ARCH: x86
-    artifacts:
-        paths:
-            - application/app/build/outputs/apk/dev/VLC-Android-*.apk
-        expire_in: 2 weeks
-
-nightly-x86_64:
-    extends: .build-all-base
-    rules:
-        - if: '$CI_PIPELINE_SOURCE == "schedule"'
-    variables:
-        ARCH: x86_64
-    artifacts:
-        paths:
-            - application/app/build/outputs/apk/dev/VLC-Android-*.apk
-        expire_in: 2 weeks
-
+#
 .build-release-libs-base:
     rules:
       - if: '$CI_COMMIT_TAG =~ /^libvlc-.*$/'
@@ -164,13 +79,11 @@ nightly-x86_64:
     script:
       - mkdir -p $M2_REPO
       - ./buildsystem/compile.sh -l -a ${ARCH} -m2 $M2_REPO release
-      - ./buildsystem/compile.sh -ml -a ${ARCH} -m2 $M2_REPO release -b
     artifacts:
       expire_in: 1h
       when: on_success
       paths:
         - $CI_PROJECT_DIR/libvlc/jni/libs/*
-        - $CI_PROJECT_DIR/medialibrary/jni/libs/*
         - $CI_PROJECT_DIR/.dbg/*
 
 build-libs-arm64:
@@ -205,7 +118,6 @@ publish_libs:
         - mkdir -p $M2_REPO
         - ./buildsystem/compile.sh --init -b
         - GRADLE_ABI=ALL RELEASE_SIGNING_ENABLED=false ./gradlew -Dmaven.repo.local=$M2_REPO -p libvlc publishToMavenLocal
-        - GRADLE_ABI=ALL RELEASE_SIGNING_ENABLED=false ./gradlew -Dmaven.repo.local=$M2_REPO -p medialibrary publishToMavenLocal
     artifacts:
         name: "${CI_COMMIT_TAG}.dbg"
         paths:
