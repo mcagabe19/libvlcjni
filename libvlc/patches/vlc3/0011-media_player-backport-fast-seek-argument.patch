@@ -1,10 +1,10 @@
-From 123a6e2448e266d069642feccdec3a61da2e316a Mon Sep 17 00:00:00 2001
-Message-Id: <123a6e2448e266d069642feccdec3a61da2e316a.1651138725.git.thomas@gllm.fr>
-In-Reply-To: <dfbbc0d05a7d14b403668da8ce51c95172258a46.1651138725.git.thomas@gllm.fr>
-References: <dfbbc0d05a7d14b403668da8ce51c95172258a46.1651138725.git.thomas@gllm.fr>
+From da67b5aaec7d407ac52472c1a5d982d26d60bc5f Mon Sep 17 00:00:00 2001
+Message-Id: <da67b5aaec7d407ac52472c1a5d982d26d60bc5f.1657539375.git.thomas@gllm.fr>
+In-Reply-To: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+References: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Wed, 4 Aug 2021 13:33:50 +0200
-Subject: [PATCH 11/18] media_player: backport fast seek argument
+Subject: [PATCH 11/20] media_player: backport fast seek argument
 
 The fast-seek option is not global anymore but related to each seek
 requests.

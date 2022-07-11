@@ -1,10 +1,10 @@
-From 58f03024eb2a73e7bb94a46faaa67912edde8f4d Mon Sep 17 00:00:00 2001
-Message-Id: <58f03024eb2a73e7bb94a46faaa67912edde8f4d.1651138725.git.thomas@gllm.fr>
-In-Reply-To: <dfbbc0d05a7d14b403668da8ce51c95172258a46.1651138725.git.thomas@gllm.fr>
-References: <dfbbc0d05a7d14b403668da8ce51c95172258a46.1651138725.git.thomas@gllm.fr>
+From 766c6bcfad20a69275a3478b839430ef2fa55bd4 Mon Sep 17 00:00:00 2001
+Message-Id: <766c6bcfad20a69275a3478b839430ef2fa55bd4.1657539375.git.thomas@gllm.fr>
+In-Reply-To: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+References: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Fri, 29 Nov 2019 15:41:08 +0100
-Subject: [PATCH 08/18] input: Extract attachment also when preparsing
+Subject: [PATCH 08/20] input: Extract attachment also when preparsing
 
 Message-Id: <90f80f4face6fe96f631651d8c212541a6539a34.1606132271.git.hugo@beauzee.fr>
 Message-Id: <4e829aba815aa6faf4a8d4ee8076abb8e20c7059.1607001652.git.nicolas@videolabs.io>
@@ -365,7 +365,7 @@ index d20585ba33..fe4846144f 100644
  /*****************************************************************************
   * input defines/constants.
 diff --git a/lib/Makefile.am b/lib/Makefile.am
-index 892d9b14f1..f815c69ce3 100644
+index e342c977c3..6c82fbda94 100644
 --- a/lib/Makefile.am
 +++ b/lib/Makefile.am
 @@ -20,6 +20,7 @@ pkginclude_HEADERS = \
@@ -965,10 +965,10 @@ index 8cdb2c5568..069644598c 100644
              }
              return VLC_EGENERIC;
 diff --git a/modules/demux/flac.c b/modules/demux/flac.c
-index a22e51c17d..e539675f71 100644
+index e521d48c39..2e76e79ed5 100644
 --- a/modules/demux/flac.c
 +++ b/modules/demux/flac.c
-@@ -201,7 +201,7 @@ static void Close( vlc_object_t * p_this )
+@@ -202,7 +202,7 @@ static void Close( vlc_object_t * p_this )
      TAB_CLEAN( p_sys->i_seekpoint, p_sys->seekpoint );
  
      for( int i = 0; i < p_sys->i_attachments; i++ )
@@ -987,7 +987,7 @@ index a22e51c17d..e539675f71 100644
      }
      else if( i_query == DEMUX_GET_TITLE_INFO )
 diff --git a/modules/demux/mkv/demux.cpp b/modules/demux/mkv/demux.cpp
-index 6fa2418dd2..403aa48b9e 100644
+index c32ef28f0f..c860e769b2 100644
 --- a/modules/demux/mkv/demux.cpp
 +++ b/modules/demux/mkv/demux.cpp
 @@ -439,8 +439,6 @@ demux_sys_t::~demux_sys_t()
@@ -1467,7 +1467,7 @@ index 074c4f2ee5..52786edb35 100644
          free( p_sys->pp_font_attachments );
      }
 diff --git a/src/Makefile.am b/src/Makefile.am
-index cdf7172dc9..f0b9963801 100644
+index 9b918d2dc5..81d308a0fb 100644
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
 @@ -240,6 +240,7 @@ libvlccore_la_SOURCES = \

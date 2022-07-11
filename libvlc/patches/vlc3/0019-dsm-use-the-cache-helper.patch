@@ -1,10 +1,10 @@
-From 3914f478b755c9bf074d58cd6378385e0848989b Mon Sep 17 00:00:00 2001
-Message-Id: <3914f478b755c9bf074d58cd6378385e0848989b.1651138725.git.thomas@gllm.fr>
-In-Reply-To: <dfbbc0d05a7d14b403668da8ce51c95172258a46.1651138725.git.thomas@gllm.fr>
-References: <dfbbc0d05a7d14b403668da8ce51c95172258a46.1651138725.git.thomas@gllm.fr>
+From 4b9c4bae9f5807eb48010ca97d2d1885c6919a35 Mon Sep 17 00:00:00 2001
+Message-Id: <4b9c4bae9f5807eb48010ca97d2d1885c6919a35.1657539375.git.thomas@gllm.fr>
+In-Reply-To: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+References: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Tue, 25 Jan 2022 13:17:02 +0100
-Subject: [PATCH 17/18] dsm: use the cache helper
+Subject: [PATCH 19/20] dsm: use the cache helper
 
 Cache the dsm session when closing. It will be re-used if an other
 access is opened on the same server/share/username within 5 seconds.
@@ -34,7 +34,7 @@ index 8be84055fa..05ac57d247 100644
  access_LTLIBRARIES += $(LTLIBdsm)
  EXTRA_LTLIBRARIES += libdsm_plugin.la
 diff --git a/modules/access/dsm/access.c b/modules/access/dsm/access.c
-index 349b423785..0aa173aa40 100644
+index ebacf1c187..9d18aa82e7 100644
 --- a/modules/access/dsm/access.c
 +++ b/modules/access/dsm/access.c
 @@ -49,6 +49,7 @@
@@ -70,7 +70,7 @@ index 349b423785..0aa173aa40 100644
  };
  
  #if BDSM_VERSION_CURRENT >= 5
-@@ -282,6 +294,7 @@ static int OpenNotForced( vlc_object_t *p_this )
+@@ -303,6 +315,7 @@ static int OpenNotForced( vlc_object_t *p_this )
  /*****************************************************************************
   * Close: free unused data structures
   *****************************************************************************/
@@ -78,7 +78,7 @@ index 349b423785..0aa173aa40 100644
  static void Close( vlc_object_t *p_this )
  {
      stream_t     *p_access = (stream_t*)p_this;
-@@ -289,11 +302,14 @@ static void Close( vlc_object_t *p_this )
+@@ -310,11 +323,14 @@ static void Close( vlc_object_t *p_this )
  
      if( p_sys->i_fd )
          smb_fclose( p_sys->p_session, p_sys->i_fd );
@@ -95,7 +95,7 @@ index 349b423785..0aa173aa40 100644
      free( p_sys );
  }
  
-@@ -406,6 +422,14 @@ error:
+@@ -436,6 +452,14 @@ error:
          == NT_STATUS_ACCESS_DENIED ? EACCES : ENOENT;
  }
  
@@ -110,7 +110,7 @@ index 349b423785..0aa173aa40 100644
  /* Performs login with existing credentials and ask the user for new ones on
     failure */
  static int login( stream_t *p_access )
-@@ -437,6 +461,33 @@ static int login( stream_t *p_access )
+@@ -469,6 +493,33 @@ static int login( stream_t *p_access )
      }
      psz_domain = credential.psz_realm ? credential.psz_realm : p_sys->netbios_name;
  
@@ -144,7 +144,7 @@ index 349b423785..0aa173aa40 100644
      smb_session_interrupt_register( p_sys );
  
      /* Now that we have the required data, let's establish a session */
-@@ -504,6 +555,28 @@ static int login( stream_t *p_access )
+@@ -537,6 +588,28 @@ static int login( stream_t *p_access )
      if( !b_guest )
          vlc_credential_store( &credential, p_access );
  
