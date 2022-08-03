@@ -1,5 +1,4 @@
-From ff1d385e1c5552c4e42772c92f10d37b530c519f Mon Sep 17 00:00:00 2001
-Message-Id: <ff1d385e1c5552c4e42772c92f10d37b530c519f.1659509409.git.hugo@beauzee.fr>
+From 30e3ef949c41500f6e49d4a361a93bde75383143 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 2 Aug 2022 16:05:15 +0200
 Subject: [PATCH] contrib: upnp: Fix potential allocation failure for large
@@ -9,7 +8,8 @@ Fix #27173
 Submitted upstream: https://github.com/pupnp/pupnp/pull/406
 ---
  ...age-Fix-potential-allocation-failure.patch | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
+ contrib/src/upnp/rules.mak                    |  1 +
+ 2 files changed, 56 insertions(+)
  create mode 100644 contrib/src/upnp/0001-http-RecvMessage-Fix-potential-allocation-failure.patch
 
 diff --git a/contrib/src/upnp/0001-http-RecvMessage-Fix-potential-allocation-failure.patch b/contrib/src/upnp/0001-http-RecvMessage-Fix-potential-allocation-failure.patch
@@ -73,6 +73,18 @@ index 0000000000..3c086ca23f
 +-- 
 +2.35.1
 +
+diff --git a/contrib/src/upnp/rules.mak b/contrib/src/upnp/rules.mak
+index 762a5c052d..1d2ba1c89c 100644
+--- a/contrib/src/upnp/rules.mak
++++ b/contrib/src/upnp/rules.mak
+@@ -50,6 +50,7 @@ ifdef HAVE_ANDROID
+ endif
+ 	$(APPLY) $(SRC)/upnp/miniserver.patch
+ 	$(APPLY) $(SRC)/upnp/upnp-no-debugfile.patch
++	$(APPLY) $(SRC)/upnp/0001-http-RecvMessage-Fix-potential-allocation-failure.patch
+ 	$(UPDATE_AUTOCONFIG)
+ 	$(MOVE)
+ 
 -- 
 2.35.1
 
