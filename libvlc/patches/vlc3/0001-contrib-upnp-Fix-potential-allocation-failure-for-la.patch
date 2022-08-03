@@ -1,0 +1,78 @@
+From ff1d385e1c5552c4e42772c92f10d37b530c519f Mon Sep 17 00:00:00 2001
+Message-Id: <ff1d385e1c5552c4e42772c92f10d37b530c519f.1659509409.git.hugo@beauzee.fr>
+From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
+Date: Tue, 2 Aug 2022 16:05:15 +0200
+Subject: [PATCH] contrib: upnp: Fix potential allocation failure for large
+ documents
+
+Fix #27173
+Submitted upstream: https://github.com/pupnp/pupnp/pull/406
+---
+ ...age-Fix-potential-allocation-failure.patch | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+ create mode 100644 contrib/src/upnp/0001-http-RecvMessage-Fix-potential-allocation-failure.patch
+
+diff --git a/contrib/src/upnp/0001-http-RecvMessage-Fix-potential-allocation-failure.patch b/contrib/src/upnp/0001-http-RecvMessage-Fix-potential-allocation-failure.patch
+new file mode 100644
+index 0000000000..3c086ca23f
+--- /dev/null
++++ b/contrib/src/upnp/0001-http-RecvMessage-Fix-potential-allocation-failure.patch
+@@ -0,0 +1,55 @@
++From eface3585148f730f1a50844bf2e38a96bbb450a Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
++Date: Tue, 2 Aug 2022 15:48:03 +0200
++Subject: [PATCH] http: RecvMessage: Fix potential allocation failure
++
++If for whatever reason the server replies without maxing out the buffer,
++the code would end up doubling the buffer size nonetheless, which can
++quickly cause malloc to fail, once we try to allocate 2^30 or more bytes
++This was especially noticeable for large results.
++Reported as https://code.videolan.org/videolan/vlc/-/issues/27173
++---
++ upnp/src/genlib/net/http/httpreadwrite.c | 20 ++++++++++++--------
++ 1 file changed, 12 insertions(+), 8 deletions(-)
++
++diff --git a/upnp/src/genlib/net/http/httpreadwrite.c b/upnp/src/genlib/net/http/httpreadwrite.c
++index 91c6c541..b63dacff 100644
++--- a/upnp/src/genlib/net/http/httpreadwrite.c
+++++ b/upnp/src/genlib/net/http/httpreadwrite.c
++@@ -366,7 +366,7 @@ int http_RecvMessage(SOCKINFO *info,
++ 	int ret = UPNP_E_SUCCESS;
++ 	int line = 0;
++ 	parse_status_t status;
++-	int num_read;
+++	int num_read = 0;
++ 	int ok_on_close = 0;
++ 	char *buf;
++ 	size_t buf_len = 1024;
++@@ -384,13 +384,17 @@ int http_RecvMessage(SOCKINFO *info,
++ 	}
++ 
++ 	while (1) {
++-		/* Double the bet */
++-		free(buf);
++-		buf_len = 2 * buf_len;
++-		buf = malloc(buf_len);
++-		if (!buf) {
++-			ret = UPNP_E_OUTOF_MEMORY;
++-			goto ExitFunction;
+++		/* Double the bet if needed */
+++		/* We should have already exited the loop if the value was <= 0 so
+++		 * the cast is safe */
+++		if ((size_t)num_read >= buf_len) {
+++			free(buf);
+++			buf_len = 2 * buf_len;
+++			buf = malloc(buf_len);
+++			if (!buf) {
+++				ret = UPNP_E_OUTOF_MEMORY;
+++				goto ExitFunction;
+++			}
++ 		}
++ 		num_read = sock_read(info, buf, buf_len, timeout_secs);
++ 		if (num_read > 0) {
++-- 
++2.35.1
++
+-- 
+2.35.1
+
