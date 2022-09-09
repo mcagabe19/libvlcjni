@@ -1,14 +1,15 @@
-From 766c6bcfad20a69275a3478b839430ef2fa55bd4 Mon Sep 17 00:00:00 2001
-Message-Id: <766c6bcfad20a69275a3478b839430ef2fa55bd4.1657539375.git.thomas@gllm.fr>
-In-Reply-To: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
-References: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+From 8189bdde10670ea316515e1887d5527379c39f8b Mon Sep 17 00:00:00 2001
+Message-Id: <8189bdde10670ea316515e1887d5527379c39f8b.1662737834.git.dev.asenat@posteo.net>
+In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Fri, 29 Nov 2019 15:41:08 +0100
-Subject: [PATCH 08/20] input: Extract attachment also when preparsing
+Subject: [PATCH 09/22] input: Extract attachment also when preparsing
 
 Message-Id: <90f80f4face6fe96f631651d8c212541a6539a34.1606132271.git.hugo@beauzee.fr>
 Message-Id: <4e829aba815aa6faf4a8d4ee8076abb8e20c7059.1607001652.git.nicolas@videolabs.io>
 Message-Id: <dc967e7c2290936691d530a6e64033fadb81b881.1628587500.git.thomas@gllm.fr>
+Message-Id: <766c6bcfad20a69275a3478b839430ef2fa55bd4.1657539375.git.thomas@gllm.fr>
 ---
  include/vlc/libvlc_events.h                  |  10 +
  include/vlc/libvlc_picture.h                 | 149 +++++++++++
@@ -1405,7 +1406,7 @@ index fc7a203ab0..1f12c90765 100644
                  if( (*ppp_attach)[*pi_int] )
                      (*pi_int)++;
 diff --git a/modules/demux/ogg.c b/modules/demux/ogg.c
-index d0d8d14c1b..4cec93dc9d 100644
+index 5161275870..2b4bdca7d2 100644
 --- a/modules/demux/ogg.c
 +++ b/modules/demux/ogg.c
 @@ -835,7 +835,7 @@ static int Control( demux_t *p_demux, int i_query, va_list args )
@@ -1417,7 +1418,7 @@ index d0d8d14c1b..4cec93dc9d 100644
              return VLC_SUCCESS;
          }
  
-@@ -2295,7 +2295,7 @@ static void Ogg_EndOfStream( demux_t *p_demux )
+@@ -2293,7 +2293,7 @@ static void Ogg_EndOfStream( demux_t *p_demux )
      p_ogg->p_meta = NULL;
  
      for(int i=0; i<p_ogg->i_attachments; i++)
@@ -1841,5 +1842,5 @@ index a15ba0d923..8ce2287e45 100644
 +vlc_input_attachment_Hold
 +vlc_input_attachment_Release
 -- 
-2.30.2
+2.37.1
 

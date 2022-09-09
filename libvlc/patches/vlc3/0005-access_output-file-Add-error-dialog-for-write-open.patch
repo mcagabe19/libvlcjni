@@ -1,10 +1,10 @@
-From e9e7a434588ecb8a29fbefbfd1d4705a2816d555 Mon Sep 17 00:00:00 2001
-Message-Id: <e9e7a434588ecb8a29fbefbfd1d4705a2816d555.1657539375.git.thomas@gllm.fr>
-In-Reply-To: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
-References: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+From ec29d580927856a5a3cb85906be9c31b1f167453 Mon Sep 17 00:00:00 2001
+Message-Id: <ec29d580927856a5a3cb85906be9c31b1f167453.1662737834.git.dev.asenat@posteo.net>
+In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
 From: Soomin Lee <bubu@mikan.io>
 Date: Mon, 1 Oct 2018 15:37:57 +0200
-Subject: [PATCH 04/20] access_output: file: Add error dialog for write/open
+Subject: [PATCH 05/22] access_output: file: Add error dialog for write/open
 
 Message-Id: <b95a09a0bb9cb649ab7c8f0ac0034013dad55247.1593695247.git.thomas@gllm.fr>
 Message-Id: <edf369375dd3937286034267c8a614f188fb51e4.1599040437.git.nicolas@videolabs.io>
@@ -14,6 +14,7 @@ Message-Id: <bbe05da9d5f466b3b41b46407342f6a2ef59f0a9.1605192544.git.nicolas@vid
 Message-Id: <d826d9929b5bb41537bddafe48eb54529f5bd8e1.1605701951.git.nicolas@videolabs.io>
 Message-Id: <6e9429547d0dedb20be479361f6e67e9b312d858.1607001652.git.nicolas@videolabs.io>
 Message-Id: <e7cc17f80b5cb0b1c4ef2303a4659053431b2788.1628587500.git.thomas@gllm.fr>
+Message-Id: <e9e7a434588ecb8a29fbefbfd1d4705a2816d555.1657539375.git.thomas@gllm.fr>
 ---
  modules/access_output/file.c | 8 ++++++++
  1 file changed, 8 insertions(+)
@@ -47,5 +48,5 @@ index ef4f2d18d1..55e4822b90 100644
                  break;
              flags &= ~O_EXCL;
 -- 
-2.30.2
+2.37.1
 

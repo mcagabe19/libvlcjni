@@ -1,12 +1,15 @@
-From 07b87dc7b45f6190f987bd63f78b64518430b317 Mon Sep 17 00:00:00 2001
-Message-Id: <07b87dc7b45f6190f987bd63f78b64518430b317.1659521752.git.hugo@beauzee.fr>
+From 099bfff49ccd5ddbd60d98b834731558d1881c64 Mon Sep 17 00:00:00 2001
+Message-Id: <099bfff49ccd5ddbd60d98b834731558d1881c64.1662737834.git.dev.asenat@posteo.net>
+In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 2 Aug 2022 16:05:15 +0200
-Subject: [PATCH] contrib: upnp: Fix potential allocation failure for large
- documents
+Subject: [PATCH 02/22] contrib: upnp: Fix potential allocation failure for
+ large documents
 
 Fix #27173
 Submitted upstream: https://github.com/pupnp/pupnp/pull/406
+Message-Id: <07b87dc7b45f6190f987bd63f78b64518430b317.1659521752.git.hugo@beauzee.fr>
 ---
  ...age-Fix-potential-allocation-failure.patch | 55 +++++++++++++++++++
  contrib/src/upnp/rules.mak                    |  1 +
@@ -87,5 +90,5 @@ index 762a5c052d..1d2ba1c89c 100644
  	$(MOVE)
  
 -- 
-2.35.1
+2.37.1
 

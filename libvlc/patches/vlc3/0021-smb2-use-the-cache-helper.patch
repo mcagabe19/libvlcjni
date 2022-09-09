@@ -1,10 +1,10 @@
-From 65c9f30e0c57f51acafba8de8a6286fdd78bc88e Mon Sep 17 00:00:00 2001
-Message-Id: <65c9f30e0c57f51acafba8de8a6286fdd78bc88e.1657539375.git.thomas@gllm.fr>
-In-Reply-To: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
-References: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+From d61ef77a05360486a01bfa0c741c1414eb8e867e Mon Sep 17 00:00:00 2001
+Message-Id: <d61ef77a05360486a01bfa0c741c1414eb8e867e.1662737834.git.dev.asenat@posteo.net>
+In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Fri, 21 Jan 2022 17:28:13 +0100
-Subject: [PATCH 20/20] smb2: use the cache helper
+Subject: [PATCH 21/22] smb2: use the cache helper
 
 Cache the smb2 session when closing. It will be re-used if an other
 access is opened on the same server/share/username within 5 seconds.
@@ -15,6 +15,7 @@ Small benchmark, time to open the smb2 access:
 
 (cherry picked from commit a2357357f1dd889abc038e7976264ddbb44a74ad)
 Signed-off-by: Thomas Guillem <thomas@gllm.fr>
+Message-Id: <65c9f30e0c57f51acafba8de8a6286fdd78bc88e.1657539375.git.thomas@gllm.fr>
 ---
  modules/access/Makefile.am |  2 +-
  modules/access/smb2.c      | 56 ++++++++++++++++++++++++++++++++++----
@@ -143,5 +144,5 @@ index 370708ec0b..9e2916be57 100644
      vlc_UrlClean(&sys->encoded_url);
  }
 -- 
-2.30.2
+2.37.1
 

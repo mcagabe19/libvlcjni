@@ -1,15 +1,16 @@
-From 02e86e75af30a959de75f343a268b06076acdca6 Mon Sep 17 00:00:00 2001
-Message-Id: <02e86e75af30a959de75f343a268b06076acdca6.1657539375.git.thomas@gllm.fr>
-In-Reply-To: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
-References: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+From 897c409d7d95df71f92f0680ef70d8aee6a69610 Mon Sep 17 00:00:00 2001
+Message-Id: <897c409d7d95df71f92f0680ef70d8aee6a69610.1662737834.git.dev.asenat@posteo.net>
+In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
 From: Francois Cartegnie <fcvlcdev@free.fr>
 Date: Thu, 2 Dec 2021 10:06:28 +0100
-Subject: [PATCH 13/20] freetype: android: process formatted text nodes
+Subject: [PATCH 14/22] freetype: android: process formatted text nodes
 
 Trims filenames as they are not stored as attributes.
 
 Also removes incorrect asprintf 0 return value handling
 Message-Id: <c53d7f0295a1eba02a24794891ef2579e556793c.1638525624.git.hugo@beauzee.fr>
+Message-Id: <02e86e75af30a959de75f343a268b06076acdca6.1657539375.git.thomas@gllm.fr>
 ---
  .../text_renderer/freetype/fonts/android.c    | 26 +++++++++++++++++--
  1 file changed, 24 insertions(+), 2 deletions(-)
@@ -53,5 +54,5 @@ index 08e7007c48..ab77d5acf5 100644
      return VLC_SUCCESS;
  }
 -- 
-2.30.2
+2.37.1
 

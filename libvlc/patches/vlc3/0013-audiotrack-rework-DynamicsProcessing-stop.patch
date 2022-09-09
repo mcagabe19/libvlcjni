@@ -1,16 +1,17 @@
-From e08bbc3b30a477931d1994246e6cdcf209477299 Mon Sep 17 00:00:00 2001
-Message-Id: <e08bbc3b30a477931d1994246e6cdcf209477299.1657539375.git.thomas@gllm.fr>
-In-Reply-To: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
-References: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+From d12394cb85de1d2d4a8c3fc69e987f236f8f87c4 Mon Sep 17 00:00:00 2001
+Message-Id: <d12394cb85de1d2d4a8c3fc69e987f236f8f87c4.1662737834.git.dev.asenat@posteo.net>
+In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Tue, 10 Aug 2021 11:06:25 +0200
-Subject: [PATCH 12/20] audiotrack: rework DynamicsProcessing stop
+Subject: [PATCH 13/22] audiotrack: rework DynamicsProcessing stop
 
 Specifically disable it before unreferencing the jobject and destroy it
 before AudioTrack.
 
 This commit tries to fix a very rare crash with DP.
 Message-Id: <b0d5fa154e0fc27f6d368977886348269a527aa8.1628587500.git.thomas@gllm.fr>
+Message-Id: <e08bbc3b30a477931d1994246e6cdcf209477299.1657539375.git.thomas@gllm.fr>
 ---
  modules/audio_output/audiotrack.c | 15 +++++++++------
  1 file changed, 9 insertions(+), 6 deletions(-)
@@ -49,5 +50,5 @@ index 1a86e99565..d80c2d2b48 100644
      if( p_sys->timestamp.p_obj )
      {
 -- 
-2.30.2
+2.37.1
 

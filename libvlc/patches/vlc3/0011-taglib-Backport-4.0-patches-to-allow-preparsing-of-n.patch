@@ -1,10 +1,10 @@
-From 9c67e4a0b16a9fbf9fd5ff5dfafd7a04150c6d16 Mon Sep 17 00:00:00 2001
-Message-Id: <9c67e4a0b16a9fbf9fd5ff5dfafd7a04150c6d16.1657539375.git.thomas@gllm.fr>
-In-Reply-To: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
-References: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+From c510fd3c67085971e739427954ed14c35a0b51fc Mon Sep 17 00:00:00 2001
+Message-Id: <c510fd3c67085971e739427954ed14c35a0b51fc.1662737834.git.dev.asenat@posteo.net>
+In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Fri, 12 Mar 2021 11:34:02 +0100
-Subject: [PATCH 10/20] taglib: Backport 4.0 patches to allow preparsing of
+Subject: [PATCH 11/22] taglib: Backport 4.0 patches to allow preparsing of
  network files
 
 Cherry-picked from:
@@ -24,6 +24,7 @@ d375284a144e6b18896deda3a86b9560bc04f3d8
 8191ac5727a3525a6bee99e1674167a7894f9ccb
 Message-Id: <2049af159b241b9f7786ad02bd144c1ae8f25c5c.1615545496.git.hugo@beauzee.fr>
 Message-Id: <143e87709c8889f7e8e40e9a0123e48f06114017.1628587500.git.thomas@gllm.fr>
+Message-Id: <9c67e4a0b16a9fbf9fd5ff5dfafd7a04150c6d16.1657539375.git.thomas@gllm.fr>
 ---
  configure.ac                                  |   2 +-
  ...ent-ID3v2-readStyle-avoid-worst-case.patch | 148 +++++++
@@ -764,5 +765,5 @@ index 123d09c94f..04a44c30e8 100644
      if( f.isNull() )
          return VLC_EGENERIC;
 -- 
-2.30.2
+2.37.1
 

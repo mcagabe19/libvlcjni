@@ -1,11 +1,12 @@
-From 4a3821d279fc9240463b416544edead9f7d2fec8 Mon Sep 17 00:00:00 2001
-Message-Id: <4a3821d279fc9240463b416544edead9f7d2fec8.1657539375.git.thomas@gllm.fr>
-In-Reply-To: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
-References: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+From 5eba4d520636d6c668046e738838c164458b8158 Mon Sep 17 00:00:00 2001
+Message-Id: <5eba4d520636d6c668046e738838c164458b8158.1662737834.git.dev.asenat@posteo.net>
+In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Wed, 16 Feb 2022 09:52:38 +0100
-Subject: [PATCH 14/20] taglib: Fix extraction of AAC metadata
+Subject: [PATCH 15/22] taglib: Fix extraction of AAC metadata
 
+Message-Id: <4a3821d279fc9240463b416544edead9f7d2fec8.1657539375.git.thomas@gllm.fr>
 ---
  ...-Fix-IOStream-usage-with-custom-reso.patch | 130 ++++++++++++++++++
  contrib/src/taglib/rules.mak                  |   1 +
@@ -250,5 +251,5 @@ index 04a44c30e8..f4a774d367 100644
      if( f.isNull() )
          return VLC_EGENERIC;
 -- 
-2.30.2
+2.37.1
 

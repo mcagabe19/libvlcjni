@@ -1,10 +1,10 @@
-From b893762cb696a11d5d40812a804c2c03e407ce78 Mon Sep 17 00:00:00 2001
-Message-Id: <b893762cb696a11d5d40812a804c2c03e407ce78.1657539375.git.thomas@gllm.fr>
-In-Reply-To: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
-References: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+From 351595986ecd49a696e8344ed718635cd0ecfb9e Mon Sep 17 00:00:00 2001
+Message-Id: <351595986ecd49a696e8344ed718635cd0ecfb9e.1662737834.git.dev.asenat@posteo.net>
+In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Sun, 10 Jun 2018 20:36:06 +0300
-Subject: [PATCH 18/20] access: add a cache helper
+Subject: [PATCH 19/22] access: add a cache helper
 
 Helper that can be used by any accesses, that will save up to 5 contexts
 up to 5 seconds (both configurable with a define).
@@ -21,6 +21,7 @@ clang.
 (cherry picked from commit aa3829778b8f2008be6a64439e9ebdaaccbd2e8f)
 (cherry picked from commit 6dcd24dc085e8942d68edd9555c353a9ba4aede0)
 Signed-off-by: Thomas Guillem <thomas@gllm.fr>
+Message-Id: <b893762cb696a11d5d40812a804c2c03e407ce78.1657539375.git.thomas@gllm.fr>
 ---
  include/vlc_list.h         | 381 +++++++++++++++++++++++++++++++++++++
  modules/access/Makefile.am |   8 +
@@ -806,5 +807,5 @@ index 81d308a0fb..5f6c18b555 100644
  	../include/vlc_messages.h \
  	../include/vlc_meta.h \
 -- 
-2.30.2
+2.37.1
 
