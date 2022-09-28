@@ -498,7 +498,7 @@ public class VLCUtil {
         return ret;
     }
 
-    private static final String URI_AUTHORIZED_CHARS = "'()* ";
+    private static final String URI_AUTHORIZED_CHARS = "'()*";
 
     /**
      * VLC authorize only "-._~" in Mrl format, android Uri authorize "_-!.~'()*".
@@ -534,7 +534,7 @@ public class VLCUtil {
     }
 
     /**
-     * VLC only acccepts "-._~ " in Mrl format, android Uri accepts "_-!.~'()* ".
+     * VLC only acccepts "-._~" in Mrl format, android Uri accepts "_-!.~'()*".
      * Therefore, encode the characters authorized by Android Uri when creating a mrl from an Uri.
      */
     public static String encodeVLCString(@NonNull String mrl) {
