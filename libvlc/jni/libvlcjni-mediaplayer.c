@@ -580,7 +580,19 @@ Java_org_videolan_libvlc_MediaPlayer_nativeSetAudioOutput(JNIEnv *env,
         return false;
     }
 
+#if defined(LIBVLC_VERSION_MAJOR) && LIBVLC_VERSION_MAJOR >= 4
     i_ret = libvlc_audio_output_set(p_obj->u.p_mp, psz_aout);
+#else
+    /* Fix up the id for VLC3.0:
+     * opensles_android has been moved to opensles
+     * android_audiotrack has been moved to audiotrack */
+    const char *psz_fixed_aout = psz_aout;
+    if (strcmp(psz_aout, "opensles") == 0)
+        psz_fixed_aout = "opensles_android";
+    else if (strcmp(psz_aout, "audiotrack") == 0)
+        psz_fixed_aout = "android_audiotrack";
+    i_ret = libvlc_audio_output_set(p_obj->u.p_mp, psz_fixed_aout);
+#endif
     (*env)->ReleaseStringUTFChars(env, jaout, psz_aout);
 
     return i_ret == 0 ? true : false;
