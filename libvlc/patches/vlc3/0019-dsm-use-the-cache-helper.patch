@@ -1,10 +1,10 @@
-From f5b0e8f7020b199c80d12e98a322e0bddc6279df Mon Sep 17 00:00:00 2001
-Message-Id: <f5b0e8f7020b199c80d12e98a322e0bddc6279df.1662737834.git.dev.asenat@posteo.net>
-In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
-References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+From 514a36a6c1ec57ab2f4ca6f4a3dcb0d65b71788f Mon Sep 17 00:00:00 2001
+Message-Id: <514a36a6c1ec57ab2f4ca6f4a3dcb0d65b71788f.1664886558.git.dev.asenat@posteo.net>
+In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Tue, 25 Jan 2022 13:17:02 +0100
-Subject: [PATCH 20/22] dsm: use the cache helper
+Subject: [PATCH 19/21] dsm: use the cache helper
 
 Cache the dsm session when closing. It will be re-used if an other
 access is opened on the same server/share/username within 5 seconds.
@@ -16,6 +16,8 @@ Small benchmark, time to open the dsm access:
 (cherry picked from commit 31f97cbea3e4d24874817ae2cc09e2c3b6a38d81)
 Signed-off-by: Thomas Guillem <thomas@gllm.fr>
 Message-Id: <4b9c4bae9f5807eb48010ca97d2d1885c6919a35.1657539375.git.thomas@gllm.fr>
+Message-Id: <f5b0e8f7020b199c80d12e98a322e0bddc6279df.1662737834.git.dev.asenat@posteo.net>
+Message-Id: <22f34c09da70fcee7e8ed53892eed4051c13ea3b.1664884159.git.dev.asenat@posteo.net>
 ---
  modules/access/Makefile.am  |  2 +-
  modules/access/dsm/access.c | 77 ++++++++++++++++++++++++++++++++++++-
@@ -175,5 +177,5 @@ index ebacf1c187..9d18aa82e7 100644
  error:
      vlc_credential_clean( &credential );
 -- 
-2.37.1
+2.37.3
 

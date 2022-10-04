@@ -1,8 +1,8 @@
-From 8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9 Mon Sep 17 00:00:00 2001
-Message-Id: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+From 1c60b920e01d183ec81d9c862015e336b11b7816 Mon Sep 17 00:00:00 2001
+Message-Id: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Thu, 28 Mar 2019 15:23:48 +0100
-Subject: [PATCH 01/22] compat: Workaround sendmsg bug on android
+Subject: [PATCH 01/21] compat: Workaround sendmsg bug on android
 
 This only happens on 64bits builds, see compat/sendmsg.c comments
 Message-Id: <b75b490465c538e50780039dc796724974033db0.1593695247.git.thomas@gllm.fr>
@@ -14,6 +14,8 @@ Message-Id: <fcaa38ed543fd88a73fa3c6766a8f86b8b053fb6.1605701951.git.nicolas@vid
 Message-Id: <7505e758ab3f173e530063cea6a221862fb83ab2.1607001652.git.nicolas@videolabs.io>
 Message-Id: <725e37106e83190ea20042aa9dc01c1c7646b37d.1628587500.git.thomas@gllm.fr>
 Message-Id: <c39c6a221ade0e2440f3a10d57b3ecf33e982311.1657539375.git.thomas@gllm.fr>
+Message-Id: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+Message-Id: <9c6326a62110dc03fa3c8a561747ff73ce2e7fcc.1664884159.git.dev.asenat@posteo.net>
 ---
  compat/sendmsg.c      | 24 ++++++++++++++++++++++++
  configure.ac          |  3 +++
@@ -56,7 +58,7 @@ index 0f42e782f8..8d69048746 100644
  #else
  #error sendmsg not implemented on your platform!
 diff --git a/configure.ac b/configure.ac
-index 48b1596a69..a2c93cd13b 100644
+index ff64919108..d1ebc002a1 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -405,6 +405,9 @@ AS_IF([test "$SYS" = linux],[
@@ -87,5 +89,5 @@ index 010454a01c..1b36e3d574 100644
  }
  # endif
 -- 
-2.37.1
+2.37.3
 

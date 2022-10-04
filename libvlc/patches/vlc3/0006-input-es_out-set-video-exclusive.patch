@@ -1,10 +1,10 @@
-From 1e721b29dcfa8e1248b3aca61ff468c574deac30 Mon Sep 17 00:00:00 2001
-Message-Id: <1e721b29dcfa8e1248b3aca61ff468c574deac30.1662737834.git.dev.asenat@posteo.net>
-In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
-References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+From fb92a08623d7fd3241b314822c33d0abd2e7eb32 Mon Sep 17 00:00:00 2001
+Message-Id: <fb92a08623d7fd3241b314822c33d0abd2e7eb32.1664886557.git.dev.asenat@posteo.net>
+In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Thu, 2 Jul 2020 15:05:01 +0200
-Subject: [PATCH 07/22] input: es_out: set video exclusive
+Subject: [PATCH 06/21] input: es_out: set video exclusive
 
 Since there can be only one video at a time for now (only one Surface is
 supported).
@@ -17,6 +17,8 @@ Message-Id: <964b4ca71858fbb42a56bbee00fd4c5920144a8e.1605701951.git.nicolas@vid
 Message-Id: <b0108674d37312b6dcff0ed6ae1b2ec5fe381e7c.1607001652.git.nicolas@videolabs.io>
 Message-Id: <160914569d8a4b3ae27b931a2028ec58a37b4be0.1628587500.git.thomas@gllm.fr>
 Message-Id: <0a94a6c9aba2dbd2d164a2374ff85375983714d1.1657539375.git.thomas@gllm.fr>
+Message-Id: <1e721b29dcfa8e1248b3aca61ff468c574deac30.1662737834.git.dev.asenat@posteo.net>
+Message-Id: <2387d215d9f8989d26859a398ee1fdc028426589.1664884159.git.dev.asenat@posteo.net>
 ---
  src/input/es_out.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -35,5 +37,5 @@ index 112cf5fe1d..1b4c08f3ec 100644
      EsOutPropsInit( &p_sys->audio, true, p_input, ES_OUT_ES_POLICY_EXCLUSIVE,
                      "audio-track-id", "audio-track", "audio-language", "audio" );
 -- 
-2.37.1
+2.37.3
 

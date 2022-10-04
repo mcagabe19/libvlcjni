@@ -1,10 +1,10 @@
-From d443d1ad99b3317d6dac28a5b31826282dae0991 Mon Sep 17 00:00:00 2001
-Message-Id: <d443d1ad99b3317d6dac28a5b31826282dae0991.1662737834.git.dev.asenat@posteo.net>
-In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
-References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+From a2623fac4a87a2ca51256c2210f9c7a0cbbe6194 Mon Sep 17 00:00:00 2001
+Message-Id: <a2623fac4a87a2ca51256c2210f9c7a0cbbe6194.1664886557.git.dev.asenat@posteo.net>
+In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
 From: Pierre Ynard <linkfanel@yahoo.fr>
 Date: Mon, 20 Jul 2020 13:11:34 +0200
-Subject: [PATCH 08/22] stream_ReadLine: increase line length limit
+Subject: [PATCH 07/21] stream_ReadLine: increase line length limit
 
 Very long lines are occasionally encountered in text web resources such
 as HTML, JSON or other API data. This bumps the hardcoded limit from
@@ -22,6 +22,8 @@ Message-Id: <31f8088b0a2c5080ec28dd611adbb5bde6ca63d0.1605701951.git.nicolas@vid
 Message-Id: <f7f93e77086f2cb8ffd53870de60d1a7a0e79244.1607001652.git.nicolas@videolabs.io>
 Message-Id: <ab4ee97a6102316e29de2932653f17a72477bd4c.1628587500.git.thomas@gllm.fr>
 Message-Id: <79dd5d59744164cb3886e17cd0d6033435a68efd.1657539375.git.thomas@gllm.fr>
+Message-Id: <d443d1ad99b3317d6dac28a5b31826282dae0991.1662737834.git.dev.asenat@posteo.net>
+Message-Id: <c37ddd43509aa677187d119d2e69ffbad80fcfb4.1664884159.git.dev.asenat@posteo.net>
 ---
  src/input/stream.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -40,5 +42,5 @@ index b94279b431..6be87f8551 100644
  {
      stream_priv_t *priv = (stream_priv_t *)s;
 -- 
-2.37.1
+2.37.3
 

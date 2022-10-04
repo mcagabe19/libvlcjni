@@ -1,15 +1,17 @@
-From 8189bdde10670ea316515e1887d5527379c39f8b Mon Sep 17 00:00:00 2001
-Message-Id: <8189bdde10670ea316515e1887d5527379c39f8b.1662737834.git.dev.asenat@posteo.net>
-In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
-References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+From 993c9ee5a41aa2ccbfe7dd03bddd298638c17d85 Mon Sep 17 00:00:00 2001
+Message-Id: <993c9ee5a41aa2ccbfe7dd03bddd298638c17d85.1664886557.git.dev.asenat@posteo.net>
+In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Fri, 29 Nov 2019 15:41:08 +0100
-Subject: [PATCH 09/22] input: Extract attachment also when preparsing
+Subject: [PATCH 08/21] input: Extract attachment also when preparsing
 
 Message-Id: <90f80f4face6fe96f631651d8c212541a6539a34.1606132271.git.hugo@beauzee.fr>
 Message-Id: <4e829aba815aa6faf4a8d4ee8076abb8e20c7059.1607001652.git.nicolas@videolabs.io>
 Message-Id: <dc967e7c2290936691d530a6e64033fadb81b881.1628587500.git.thomas@gllm.fr>
 Message-Id: <766c6bcfad20a69275a3478b839430ef2fa55bd4.1657539375.git.thomas@gllm.fr>
+Message-Id: <8189bdde10670ea316515e1887d5527379c39f8b.1662737834.git.dev.asenat@posteo.net>
+Message-Id: <6ac412cfc3fd78345c966c0b5f20178b8511e11d.1664884159.git.dev.asenat@posteo.net>
 ---
  include/vlc/libvlc_events.h                  |  10 +
  include/vlc/libvlc_picture.h                 | 149 +++++++++++
@@ -1141,7 +1143,7 @@ index fa9a1e81a5..1270f6a9b5 100644
  struct matroska_stream_c
  {
 diff --git a/modules/demux/mp4/mp4.c b/modules/demux/mp4/mp4.c
-index 5b2d0fce6b..670a29a767 100644
+index 4281bccccb..e8e2eda45b 100644
 --- a/modules/demux/mp4/mp4.c
 +++ b/modules/demux/mp4/mp4.c
 @@ -121,6 +121,8 @@ struct demux_sys_t
@@ -1153,7 +1155,7 @@ index 5b2d0fce6b..670a29a767 100644
  };
  
  #define DEMUX_INCREMENT (CLOCK_FREQ / 4) /* How far the pcr will go, each round */
-@@ -679,6 +681,7 @@ static int Open( vlc_object_t * p_this )
+@@ -740,6 +742,7 @@ static int Open( vlc_object_t * p_this )
      p_demux->pf_control = Control;
  
      p_sys->context.i_lastseqnumber = UINT32_MAX;
@@ -1161,7 +1163,7 @@ index 5b2d0fce6b..670a29a767 100644
  
      p_demux->p_sys = p_sys;
  
-@@ -1931,112 +1934,123 @@ static int Control( demux_t *p_demux, int i_query, va_list args )
+@@ -1992,112 +1995,123 @@ static int Control( demux_t *p_demux, int i_query, va_list args )
              input_attachment_t ***ppp_attach = va_arg( args, input_attachment_t*** );
              int *pi_int = va_arg( args, int * );
  
@@ -1372,7 +1374,7 @@ index 5b2d0fce6b..670a29a767 100644
              return VLC_SUCCESS;
          }
  
-@@ -2135,6 +2149,10 @@ static void Close ( vlc_object_t * p_this )
+@@ -2196,6 +2210,10 @@ static void Close ( vlc_object_t * p_this )
          MP4_TrackClean( p_demux->out, &p_sys->track[i_track] );
      free( p_sys->track );
  
@@ -1406,7 +1408,7 @@ index fc7a203ab0..1f12c90765 100644
                  if( (*ppp_attach)[*pi_int] )
                      (*pi_int)++;
 diff --git a/modules/demux/ogg.c b/modules/demux/ogg.c
-index 5161275870..2b4bdca7d2 100644
+index fc4fe78af3..a0a419aa4a 100644
 --- a/modules/demux/ogg.c
 +++ b/modules/demux/ogg.c
 @@ -835,7 +835,7 @@ static int Control( demux_t *p_demux, int i_query, va_list args )
@@ -1418,7 +1420,7 @@ index 5161275870..2b4bdca7d2 100644
              return VLC_SUCCESS;
          }
  
-@@ -2293,7 +2293,7 @@ static void Ogg_EndOfStream( demux_t *p_demux )
+@@ -2295,7 +2295,7 @@ static void Ogg_EndOfStream( demux_t *p_demux )
      p_ogg->p_meta = NULL;
  
      for(int i=0; i<p_ogg->i_attachments; i++)
@@ -1842,5 +1844,5 @@ index a15ba0d923..8ce2287e45 100644
 +vlc_input_attachment_Hold
 +vlc_input_attachment_Release
 -- 
-2.37.1
+2.37.3
 

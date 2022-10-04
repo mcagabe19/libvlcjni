@@ -1,10 +1,10 @@
-From c510fd3c67085971e739427954ed14c35a0b51fc Mon Sep 17 00:00:00 2001
-Message-Id: <c510fd3c67085971e739427954ed14c35a0b51fc.1662737834.git.dev.asenat@posteo.net>
-In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
-References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+From ebea878a6fff216c8781fbecaa2fde20ab268ab8 Mon Sep 17 00:00:00 2001
+Message-Id: <ebea878a6fff216c8781fbecaa2fde20ab268ab8.1664886558.git.dev.asenat@posteo.net>
+In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Fri, 12 Mar 2021 11:34:02 +0100
-Subject: [PATCH 11/22] taglib: Backport 4.0 patches to allow preparsing of
+Subject: [PATCH 10/21] taglib: Backport 4.0 patches to allow preparsing of
  network files
 
 Cherry-picked from:
@@ -25,6 +25,8 @@ d375284a144e6b18896deda3a86b9560bc04f3d8
 Message-Id: <2049af159b241b9f7786ad02bd144c1ae8f25c5c.1615545496.git.hugo@beauzee.fr>
 Message-Id: <143e87709c8889f7e8e40e9a0123e48f06114017.1628587500.git.thomas@gllm.fr>
 Message-Id: <9c67e4a0b16a9fbf9fd5ff5dfafd7a04150c6d16.1657539375.git.thomas@gllm.fr>
+Message-Id: <c510fd3c67085971e739427954ed14c35a0b51fc.1662737834.git.dev.asenat@posteo.net>
+Message-Id: <ced36d97620d2212ab3a28f1b986ec8b8a65ae17.1664884159.git.dev.asenat@posteo.net>
 ---
  configure.ac                                  |   2 +-
  ...ent-ID3v2-readStyle-avoid-worst-case.patch | 148 +++++++
@@ -34,10 +36,10 @@ Message-Id: <9c67e4a0b16a9fbf9fd5ff5dfafd7a04150c6d16.1657539375.git.thomas@gllm
  create mode 100644 contrib/src/taglib/0001-Implement-ID3v2-readStyle-avoid-worst-case.patch
 
 diff --git a/configure.ac b/configure.ac
-index a2c93cd13b..e65e5a8a0d 100644
+index d1ebc002a1..28be8eaf6a 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -4146,7 +4146,7 @@ AC_ARG_ENABLE(taglib,
+@@ -4127,7 +4127,7 @@ AC_ARG_ENABLE(taglib,
    [AS_HELP_STRING([--disable-taglib],
      [do not use TagLib (default enabled)])])
  AS_IF([test "${enable_taglib}" != "no"], [
@@ -765,5 +767,5 @@ index 123d09c94f..04a44c30e8 100644
      if( f.isNull() )
          return VLC_EGENERIC;
 -- 
-2.37.1
+2.37.3
 

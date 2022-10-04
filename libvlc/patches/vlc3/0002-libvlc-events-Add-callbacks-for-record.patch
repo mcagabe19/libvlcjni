@@ -1,10 +1,10 @@
-From 1d4e7428cd5859aba066323bc95b39fb1964581d Mon Sep 17 00:00:00 2001
-Message-Id: <1d4e7428cd5859aba066323bc95b39fb1964581d.1662737834.git.dev.asenat@posteo.net>
-In-Reply-To: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
-References: <8db168c0fbd0849e5bbc7b852b4cf9e61a5866b9.1662737834.git.dev.asenat@posteo.net>
+From 29bdf1b5bfdc642babc4f2b34ded657eb3972f50 Mon Sep 17 00:00:00 2001
+Message-Id: <29bdf1b5bfdc642babc4f2b34ded657eb3972f50.1664886557.git.dev.asenat@posteo.net>
+In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
 From: Soomin Lee <bubu@mikan.io>
 Date: Thu, 27 Sep 2018 18:40:39 +0200
-Subject: [PATCH 03/22] libvlc: events: Add callbacks for record
+Subject: [PATCH 02/21] libvlc: events: Add callbacks for record
 
 Message-Id: <5b9396f1f52bbbde75adaf92922b9e45a1fb1e78.1593695247.git.thomas@gllm.fr>
 Message-Id: <68a0f5e3a48eb05cc647084ec4886986132f83ce.1599040437.git.nicolas@videolabs.io>
@@ -15,6 +15,8 @@ Message-Id: <105b36c2aee2444842fd2c78b3fe9985b2db45f4.1605701951.git.nicolas@vid
 Message-Id: <21d5f611e3e3899d5de204e84c2a65152aadc4db.1607001652.git.nicolas@videolabs.io>
 Message-Id: <4ae0d163c5954a4e07bd0e6ad984b17c4eecb288.1628587500.git.thomas@gllm.fr>
 Message-Id: <b48523e14ac37356323f68fd2be55333b6ddd797.1657539375.git.thomas@gllm.fr>
+Message-Id: <1d4e7428cd5859aba066323bc95b39fb1964581d.1662737834.git.dev.asenat@posteo.net>
+Message-Id: <b1c3e4f31f96f6b24562d56520cff263289ed73a.1664884159.git.dev.asenat@posteo.net>
 ---
  include/vlc/libvlc_events.h |  9 +++++++++
  lib/media_player.c          | 16 ++++++++++++++++
@@ -82,5 +84,5 @@ index fda1091cc8..ab8be9e05c 100644
      return VLC_SUCCESS;
  }
 -- 
-2.37.1
+2.37.3
 
