@@ -1106,7 +1106,7 @@ index fa9a1e81a5..1270f6a9b5 100644
 --- a/modules/demux/mkv/mkv.hpp
 +++ b/modules/demux/mkv/mkv.hpp
 @@ -125,36 +125,6 @@ void BlockDecode( demux_t *p_demux, KaxBlock *block, KaxSimpleBlock *simpleblock
-                   mtime_t i_pts, mtime_t i_duration, bool b_key_picture,
+                   vlc_tick_t i_pts, vlc_tick_t i_duration, bool b_key_picture,
                    bool b_discardable_picture );
  
 -class attachment_c
