@@ -8,6 +8,8 @@ ext {
 }
 android {
 
+    namespace 'org.videolan'
+
     defaultConfig {
         compileSdkVersion rootProject.ext.compileSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
