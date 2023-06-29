@@ -1,7 +1,7 @@
-From e948bb42ed492b70571589b70cae173b5ea84ad3 Mon Sep 17 00:00:00 2001
-Message-Id: <e948bb42ed492b70571589b70cae173b5ea84ad3.1664886558.git.dev.asenat@posteo.net>
-In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
-References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+From 17a8df865e9432430433b3172f62cbb177a0ee97 Mon Sep 17 00:00:00 2001
+Message-Id: <17a8df865e9432430433b3172f62cbb177a0ee97.1688042866.git.dcn.mcnamara@gmail.com>
+In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Sun, 10 Jun 2018 20:36:06 +0300
 Subject: [PATCH 18/21] access: add a cache helper
@@ -24,6 +24,7 @@ Signed-off-by: Thomas Guillem <thomas@gllm.fr>
 Message-Id: <b893762cb696a11d5d40812a804c2c03e407ce78.1657539375.git.thomas@gllm.fr>
 Message-Id: <351595986ecd49a696e8344ed718635cd0ecfb9e.1662737834.git.dev.asenat@posteo.net>
 Message-Id: <8c2e2b3a7e8cfa49b4dd3eafd39afaec3f7dbeac.1664884159.git.dev.asenat@posteo.net>
+Message-Id: <e948bb42ed492b70571589b70cae173b5ea84ad3.1664886558.git.dev.asenat@posteo.net>
 ---
  include/vlc_list.h         | 381 +++++++++++++++++++++++++++++++++++++
  modules/access/Makefile.am |   8 +
@@ -797,7 +798,7 @@ index 0000000000..4c1c136719
 +#warning "can't register access cache"
 +#endif
 diff --git a/src/Makefile.am b/src/Makefile.am
-index 81d308a0fb..5f6c18b555 100644
+index db7f93a6bb..dc19a5473c 100644
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
 @@ -61,6 +61,7 @@ pluginsinclude_HEADERS = \
@@ -809,5 +810,5 @@ index 81d308a0fb..5f6c18b555 100644
  	../include/vlc_messages.h \
  	../include/vlc_meta.h \
 -- 
-2.37.3
+2.34.1
 

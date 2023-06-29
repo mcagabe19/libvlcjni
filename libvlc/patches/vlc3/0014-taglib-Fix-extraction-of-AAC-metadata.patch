@@ -1,7 +1,7 @@
-From f14de7713e07026e6aba14193242070c7b7102a9 Mon Sep 17 00:00:00 2001
-Message-Id: <f14de7713e07026e6aba14193242070c7b7102a9.1664886558.git.dev.asenat@posteo.net>
-In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
-References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+From 9a6fea00e0e5c2078dcb81175ed15269afaa1aaa Mon Sep 17 00:00:00 2001
+Message-Id: <9a6fea00e0e5c2078dcb81175ed15269afaa1aaa.1688042866.git.dcn.mcnamara@gmail.com>
+In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Wed, 16 Feb 2022 09:52:38 +0100
 Subject: [PATCH 14/21] taglib: Fix extraction of AAC metadata
@@ -9,11 +9,12 @@ Subject: [PATCH 14/21] taglib: Fix extraction of AAC metadata
 Message-Id: <4a3821d279fc9240463b416544edead9f7d2fec8.1657539375.git.thomas@gllm.fr>
 Message-Id: <5eba4d520636d6c668046e738838c164458b8158.1662737834.git.dev.asenat@posteo.net>
 Message-Id: <7b0db73dd3a528c13583f4317446ee7c310c9255.1664884159.git.dev.asenat@posteo.net>
+Message-Id: <f14de7713e07026e6aba14193242070c7b7102a9.1664886558.git.dev.asenat@posteo.net>
 ---
  ...-Fix-IOStream-usage-with-custom-reso.patch | 130 ++++++++++++++++++
  contrib/src/taglib/rules.mak                  |   1 +
- modules/meta_engine/taglib.cpp                |  38 ++++-
- 3 files changed, 165 insertions(+), 4 deletions(-)
+ modules/meta_engine/taglib.cpp                |  39 +++++-
+ 3 files changed, 166 insertions(+), 4 deletions(-)
  create mode 100644 contrib/src/taglib/0001-FileTypeResolver-Fix-IOStream-usage-with-custom-reso.patch
 
 diff --git a/contrib/src/taglib/0001-FileTypeResolver-Fix-IOStream-usage-with-custom-reso.patch b/contrib/src/taglib/0001-FileTypeResolver-Fix-IOStream-usage-with-custom-reso.patch
@@ -165,10 +166,10 @@ index 1e4cdf5657..9f818406e2 100644
  
  .taglib: taglib toolchain.cmake
 diff --git a/modules/meta_engine/taglib.cpp b/modules/meta_engine/taglib.cpp
-index 04a44c30e8..f4a774d367 100644
+index 80bdff1eca..da46fbdc1e 100644
 --- a/modules/meta_engine/taglib.cpp
 +++ b/modules/meta_engine/taglib.cpp
-@@ -94,15 +94,27 @@ using namespace TagLib;
+@@ -99,15 +99,27 @@ using namespace TagLib;
  #include <algorithm>
  #include <limits>
  
@@ -196,7 +197,7 @@ index 04a44c30e8..f4a774d367 100644
  
          protected:
              std::string ext;
-@@ -110,7 +122,7 @@ namespace VLCTagLib
+@@ -115,7 +127,7 @@ namespace VLCTagLib
  }
  
  template <class T>
@@ -205,14 +206,14 @@ index 04a44c30e8..f4a774d367 100644
  {
      this->ext = ext;
      std::transform(this->ext.begin(), this->ext.end(), this->ext.begin(), ::toupper);
-@@ -130,9 +142,28 @@ File *VLCTagLib::ExtResolver<T>::createFile(FileName fileName, bool, AudioProper
+@@ -135,8 +147,27 @@ File *VLCTagLib::ExtResolver<T>::createFile(FileName fileName, bool, AudioProper
              return new T(fileName, false, AudioProperties::Fast);
      }
  
 -    return 0;
 +    return nullptr;
- }
- 
++}
++
 +#ifdef USE_IOSTREAM_RESOLVER
 +template<class T>
 +File* VLCTagLib::ExtResolver<T>::createFileFromStream(IOStream* s, bool, AudioProperties::ReadStyle) const
@@ -229,13 +230,12 @@ index 04a44c30e8..f4a774d367 100644
 +    }
 +
 +    return nullptr;
-+}
+ }
 +#endif
-+
+ 
  static VLCTagLib::ExtResolver<MPEG::File> aacresolver(".aac");
  static bool b_extensions_registered = false;
- 
-@@ -879,7 +910,6 @@ static int ReadMeta( vlc_object_t* p_this)
+@@ -931,7 +962,6 @@ static int ReadMeta( vlc_object_t* p_this)
      vlc_mutex_locker locker (&taglib_lock);
      demux_meta_t*   p_demux_meta = (demux_meta_t *)p_this;
      vlc_meta_t*     p_meta;
@@ -243,15 +243,16 @@ index 04a44c30e8..f4a774d367 100644
  
      p_demux_meta->p_meta = NULL;
  
-@@ -915,7 +945,7 @@ static int ReadMeta( vlc_object_t* p_this)
-     else
+@@ -968,7 +998,8 @@ static int ReadMeta( vlc_object_t* p_this)
          s.setMaxSequentialRead( 1024 * 2048 );
  #endif
+ 
 -    f = FileRef( &s, false, AudioProperties::ReadStyle::Fast );
 +    FileRef f( &s, false, AudioProperties::ReadStyle::Fast );
- 
++
      if( f.isNull() )
          return VLC_EGENERIC;
+ 
 -- 
-2.37.3
+2.34.1
 

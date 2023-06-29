@@ -1,7 +1,7 @@
-From 970eaa0b436070d6e8ad1dbc209846298370ea58 Mon Sep 17 00:00:00 2001
-Message-Id: <970eaa0b436070d6e8ad1dbc209846298370ea58.1664886557.git.dev.asenat@posteo.net>
-In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
-References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+From 26c0d9d9b6768e0943fbde285c42ef0715db8446 Mon Sep 17 00:00:00 2001
+Message-Id: <26c0d9d9b6768e0943fbde285c42ef0715db8446.1688042866.git.dcn.mcnamara@gmail.com>
+In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
 From: Soomin Lee <bubu@mikan.io>
 Date: Mon, 1 Oct 2018 15:37:57 +0200
 Subject: [PATCH 04/21] access_output: file: Add error dialog for write/open
@@ -17,6 +17,7 @@ Message-Id: <e7cc17f80b5cb0b1c4ef2303a4659053431b2788.1628587500.git.thomas@gllm
 Message-Id: <e9e7a434588ecb8a29fbefbfd1d4705a2816d555.1657539375.git.thomas@gllm.fr>
 Message-Id: <ec29d580927856a5a3cb85906be9c31b1f167453.1662737834.git.dev.asenat@posteo.net>
 Message-Id: <d0e79d81e7437580e930c69011ad44294ff7c851.1664884159.git.dev.asenat@posteo.net>
+Message-Id: <970eaa0b436070d6e8ad1dbc209846298370ea58.1664886557.git.dev.asenat@posteo.net>
 ---
  modules/access_output/file.c | 8 ++++++++
  1 file changed, 8 insertions(+)
@@ -50,5 +51,5 @@ index ef4f2d18d1..55e4822b90 100644
                  break;
              flags &= ~O_EXCL;
 -- 
-2.37.3
+2.34.1
 

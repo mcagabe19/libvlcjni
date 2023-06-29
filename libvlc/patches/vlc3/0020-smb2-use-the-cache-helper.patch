@@ -1,7 +1,7 @@
-From a220a8a5d13281ec121c566e43d1aa7587d46a76 Mon Sep 17 00:00:00 2001
-Message-Id: <a220a8a5d13281ec121c566e43d1aa7587d46a76.1664886558.git.dev.asenat@posteo.net>
-In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
-References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+From 0aa872d1af0d2d4057c3453da4f9a017a482ea24 Mon Sep 17 00:00:00 2001
+Message-Id: <0aa872d1af0d2d4057c3453da4f9a017a482ea24.1688042866.git.dcn.mcnamara@gmail.com>
+In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Fri, 21 Jan 2022 17:28:13 +0100
 Subject: [PATCH 20/21] smb2: use the cache helper
@@ -18,6 +18,7 @@ Signed-off-by: Thomas Guillem <thomas@gllm.fr>
 Message-Id: <65c9f30e0c57f51acafba8de8a6286fdd78bc88e.1657539375.git.thomas@gllm.fr>
 Message-Id: <d61ef77a05360486a01bfa0c741c1414eb8e867e.1662737834.git.dev.asenat@posteo.net>
 Message-Id: <65659a82020cfb2b5a86beb885ca86bd6d92e8d0.1664884159.git.dev.asenat@posteo.net>
+Message-Id: <a220a8a5d13281ec121c566e43d1aa7587d46a76.1664886558.git.dev.asenat@posteo.net>
 ---
  modules/access/Makefile.am |  2 +-
  modules/access/smb2.c      | 56 ++++++++++++++++++++++++++++++++++----
@@ -146,5 +147,5 @@ index 370708ec0b..9e2916be57 100644
      vlc_UrlClean(&sys->encoded_url);
  }
 -- 
-2.37.3
+2.34.1
 

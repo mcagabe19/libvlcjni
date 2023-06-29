@@ -1,7 +1,7 @@
-From ebea878a6fff216c8781fbecaa2fde20ab268ab8 Mon Sep 17 00:00:00 2001
-Message-Id: <ebea878a6fff216c8781fbecaa2fde20ab268ab8.1664886558.git.dev.asenat@posteo.net>
-In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
-References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+From 0c200682e3e5e2307b86f4827d146f46e92baa15 Mon Sep 17 00:00:00 2001
+Message-Id: <0c200682e3e5e2307b86f4827d146f46e92baa15.1688042866.git.dcn.mcnamara@gmail.com>
+In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Fri, 12 Mar 2021 11:34:02 +0100
 Subject: [PATCH 10/21] taglib: Backport 4.0 patches to allow preparsing of
@@ -27,19 +27,20 @@ Message-Id: <143e87709c8889f7e8e40e9a0123e48f06114017.1628587500.git.thomas@gllm
 Message-Id: <9c67e4a0b16a9fbf9fd5ff5dfafd7a04150c6d16.1657539375.git.thomas@gllm.fr>
 Message-Id: <c510fd3c67085971e739427954ed14c35a0b51fc.1662737834.git.dev.asenat@posteo.net>
 Message-Id: <ced36d97620d2212ab3a28f1b986ec8b8a65ae17.1664884159.git.dev.asenat@posteo.net>
+Message-Id: <ebea878a6fff216c8781fbecaa2fde20ab268ab8.1664886558.git.dev.asenat@posteo.net>
 ---
  configure.ac                                  |   2 +-
  ...ent-ID3v2-readStyle-avoid-worst-case.patch | 148 +++++++
  contrib/src/taglib/rules.mak                  |   1 +
- modules/meta_engine/taglib.cpp                | 379 ++++++++++--------
- 4 files changed, 358 insertions(+), 172 deletions(-)
+ modules/meta_engine/taglib.cpp                | 389 ++++++++++--------
+ 4 files changed, 359 insertions(+), 181 deletions(-)
  create mode 100644 contrib/src/taglib/0001-Implement-ID3v2-readStyle-avoid-worst-case.patch
 
 diff --git a/configure.ac b/configure.ac
-index d1ebc002a1..28be8eaf6a 100644
+index 9c3c80ea89..084728739f 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -4127,7 +4127,7 @@ AC_ARG_ENABLE(taglib,
+@@ -4135,7 +4135,7 @@ AC_ARG_ENABLE(taglib,
    [AS_HELP_STRING([--disable-taglib],
      [do not use TagLib (default enabled)])])
  AS_IF([test "${enable_taglib}" != "no"], [
@@ -215,17 +216,10 @@ index a5872c1a19..1e4cdf5657 100644
  
  .taglib: taglib toolchain.cmake
 diff --git a/modules/meta_engine/taglib.cpp b/modules/meta_engine/taglib.cpp
-index 123d09c94f..04a44c30e8 100644
+index 84b401c795..80bdff1eca 100644
 --- a/modules/meta_engine/taglib.cpp
 +++ b/modules/meta_engine/taglib.cpp
-@@ -56,17 +56,13 @@
-                                    TAGLIB_MINOR_VERSION, \
-                                    TAGLIB_PATCH_VERSION)
- 
--#define TAGLIB_VERSION_1_11 VERSION_INT(1,11,0)
--
- #include <fileref.h>
- #include <tag.h>
+@@ -66,10 +66,8 @@
  #include <tbytevector.h>
  
  /* Support for stream-based metadata */
@@ -238,7 +232,7 @@ index 123d09c94f..04a44c30e8 100644
  
  #include <apefile.h>
  #include <asffile.h>
-@@ -96,6 +92,7 @@ using namespace TagLib;
+@@ -99,6 +97,7 @@ using namespace TagLib;
  
  
  #include <algorithm>
@@ -246,7 +240,7 @@ index 123d09c94f..04a44c30e8 100644
  
  namespace VLCTagLib
  {
-@@ -136,10 +133,7 @@ File *VLCTagLib::ExtResolver<T>::createFile(FileName fileName, bool, AudioProper
+@@ -139,10 +138,7 @@ File *VLCTagLib::ExtResolver<T>::createFile(FileName fileName, bool, AudioProper
      return 0;
  }
  
@@ -257,7 +251,7 @@ index 123d09c94f..04a44c30e8 100644
  static bool b_extensions_registered = false;
  
  // taglib is not thread safe
-@@ -157,13 +151,15 @@ vlc_module_begin ()
+@@ -160,13 +156,15 @@ vlc_module_begin ()
          set_callbacks( WriteMeta, NULL )
  vlc_module_end ()
  
@@ -274,7 +268,7 @@ index 123d09c94f..04a44c30e8 100644
      {
      }
  
-@@ -174,17 +170,23 @@ public:
+@@ -177,17 +175,23 @@ public:
  
      FileName name() const
      {
@@ -299,7 +293,7 @@ index 123d09c94f..04a44c30e8 100644
          return res;
      }
  
-@@ -211,22 +213,39 @@ public:
+@@ -214,22 +218,39 @@ public:
          return true;
      }
  
@@ -341,7 +335,7 @@ index 123d09c94f..04a44c30e8 100644
      }
  
      void clear()
-@@ -254,8 +273,10 @@ public:
+@@ -257,8 +278,10 @@ public:
  private:
      stream_t* m_stream;
      int64_t m_previousPos;
@@ -353,7 +347,7 @@ index 123d09c94f..04a44c30e8 100644
  
  static int ExtractCoupleNumberValues( vlc_meta_t* p_meta, const char *psz_value,
          vlc_meta_type_t first, vlc_meta_type_t second)
-@@ -458,6 +479,114 @@ static void ReadMetaFromASF( ASF::Tag* tag, demux_meta_t* p_demux_meta, vlc_meta
+@@ -461,6 +484,114 @@ static void ReadMetaFromASF( ASF::Tag* tag, demux_meta_t* p_demux_meta, vlc_meta
      }
  }
  
@@ -466,9 +460,9 @@ index 123d09c94f..04a44c30e8 100644
 +    }
 +}
  
- /**
-  * Read meta information from id3v2 tags
-@@ -552,115 +681,12 @@ static void ReadMetaFromId3v2( ID3v2::Tag* tag, demux_meta_t* p_demux_meta, vlc_
+ static void ReadMetaFromBasicTag(const Tag* tag, vlc_meta_t *dest)
+ {
+@@ -580,115 +711,12 @@ static void ReadMetaFromId3v2( ID3v2::Tag* tag, demux_meta_t* p_demux_meta, vlc_
                  vlc_meta_DiscNumber, vlc_meta_DiscTotal );
      }
  
@@ -586,7 +580,7 @@ index 123d09c94f..04a44c30e8 100644
  /**
   * Read the meta information from XiphComments
   * @param tag: the Xiph Comment
-@@ -669,17 +695,20 @@ static void ReadMetaFromId3v2( ID3v2::Tag* tag, demux_meta_t* p_demux_meta, vlc_
+@@ -697,17 +725,20 @@ static void ReadMetaFromId3v2( ID3v2::Tag* tag, demux_meta_t* p_demux_meta, vlc_
   */
  static void ReadMetaFromXiph( Ogg::XiphComment* tag, demux_meta_t* p_demux_meta, vlc_meta_t* p_meta )
  {
@@ -615,7 +609,7 @@ index 123d09c94f..04a44c30e8 100644
  
      SET( "COPYRIGHT", Copyright );
      SET( "ORGANIZATION", Publisher );
-@@ -695,25 +724,31 @@ static void ReadMetaFromXiph( Ogg::XiphComment* tag, demux_meta_t* p_demux_meta,
+@@ -723,25 +754,31 @@ static void ReadMetaFromXiph( Ogg::XiphComment* tag, demux_meta_t* p_demux_meta,
  #undef SET
  #undef SET_EXTRA
  
@@ -657,7 +651,7 @@ index 123d09c94f..04a44c30e8 100644
  
      input_attachment_t *p_attachment;
  
-@@ -740,14 +775,14 @@ static void ReadMetaFromXiph( Ogg::XiphComment* tag, demux_meta_t* p_demux_meta,
+@@ -768,14 +805,14 @@ static void ReadMetaFromXiph( Ogg::XiphComment* tag, demux_meta_t* p_demux_meta,
      }
      else
      {
@@ -675,8 +669,8 @@ index 123d09c94f..04a44c30e8 100644
          i_cover_score = i_cover_idx = 0;
          /* TODO: Use i_cover_score / i_cover_idx to select the picture. */
          p_attachment = ParseFlacPicture( p_data, i_data, 0,
-@@ -817,6 +852,23 @@ static void ReadMetaFromMP4( MP4::Tag* tag, demux_meta_t *p_demux_meta, vlc_meta
-     }
+@@ -867,6 +904,23 @@ static int ReadWAVMeta( const RIFF::WAV::File *wav, demux_meta_t *demux_meta )
+     return VLC_SUCCESS;
  }
  
 +static bool isSchemeCompatible( const char *psz_uri )
@@ -699,7 +693,7 @@ index 123d09c94f..04a44c30e8 100644
  /**
   * Get the tags from the file using TagLib
   * @param p_this: the demux object
-@@ -835,50 +887,35 @@ static int ReadMeta( vlc_object_t* p_this)
+@@ -885,61 +939,36 @@ static int ReadMeta( vlc_object_t* p_this)
      if( unlikely(psz_uri == NULL) )
          return VLC_ENOMEM;
  
@@ -744,10 +738,23 @@ index 123d09c94f..04a44c30e8 100644
 +    if( p_stream == NULL )
          return VLC_EGENERIC;
 -    }
+-#if TAGLIB_VERSION >= TAGLIB_VERSION_1_11
+-    FileStream stream( wpath, true );
+-    f = FileRef( &stream );
+-#else /* TAGLIB_VERSION */
 -    f = FileRef( wpath );
+-#endif /* TAGLIB_VERSION */
 -    free( wpath );
--#else
+-#else /* _WIN32 */
+-#if TAGLIB_VERSION >= TAGLIB_VERSION_1_11
+-    FileStream stream( psz_path, true );
+-    f = FileRef( &stream );
+-#else /* TAGLIB_VERSION */
 -    f = FileRef( psz_path );
+-#endif /* TAGLIB_VERSION */
+-#endif /* _WIN32 */
+-    free( psz_path );
+-#endif /* VLC_WINSTORE_APP */
 +    stream_t* p_filter = vlc_stream_FilterNew( p_stream, "prefetch,cache" );
 +    if( p_filter )
 +        p_stream = p_filter;
@@ -759,13 +766,12 @@ index 123d09c94f..04a44c30e8 100644
 +        s.setMaxSequentialRead( 2048 );
 +    else
 +        s.setMaxSequentialRead( 1024 * 2048 );
- #endif
--    free( psz_path );
--#endif /* VLC_WINSTORE_APP */
-+    f = FileRef( &s, false, AudioProperties::ReadStyle::Fast );
++#endif
  
++    f = FileRef( &s, false, AudioProperties::ReadStyle::Fast );
      if( f.isNull() )
          return VLC_EGENERIC;
+ 
 -- 
-2.37.3
+2.34.1
 

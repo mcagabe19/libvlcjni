@@ -1,7 +1,7 @@
-From 7ed08b496d4483115e99a6cda0cd88aa9e325abb Mon Sep 17 00:00:00 2001
-Message-Id: <7ed08b496d4483115e99a6cda0cd88aa9e325abb.1664886558.git.dev.asenat@posteo.net>
-In-Reply-To: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
-References: <1c60b920e01d183ec81d9c862015e336b11b7816.1664886557.git.dev.asenat@posteo.net>
+From df10bbc3d1691f9e6aead6d07434a59e31a409b7 Mon Sep 17 00:00:00 2001
+Message-Id: <df10bbc3d1691f9e6aead6d07434a59e31a409b7.1688042866.git.dcn.mcnamara@gmail.com>
+In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
 From: Alaric Senat <dev.asenat@posteo.net>
 Date: Tue, 4 Oct 2022 14:19:02 +0200
 Subject: [PATCH 21/21] upnp: android: implement net-intf priority
@@ -19,12 +19,13 @@ These changes intend to select in this priority order:
   - Ethernet interfaces
   - Wifi interfaces
 And refuse to fallback on roaming interfaces.
+Message-Id: <7ed08b496d4483115e99a6cda0cd88aa9e325abb.1664886558.git.dev.asenat@posteo.net>
 ---
  modules/services_discovery/upnp.cpp | 149 ++++++++++++++++++++++++++--
  1 file changed, 142 insertions(+), 7 deletions(-)
 
 diff --git a/modules/services_discovery/upnp.cpp b/modules/services_discovery/upnp.cpp
-index 728c727031..b15dd17399 100644
+index 899f5ab9ae..1e1cb3d30f 100644
 --- a/modules/services_discovery/upnp.cpp
 +++ b/modules/services_discovery/upnp.cpp
 @@ -1437,7 +1437,7 @@ static IP_ADAPTER_ADDRESSES* ListAdapters()
@@ -213,5 +214,5 @@ index 728c727031..b15dd17399 100644
          free( psz_miface );
      #else
 -- 
-2.37.3
+2.34.1
 
