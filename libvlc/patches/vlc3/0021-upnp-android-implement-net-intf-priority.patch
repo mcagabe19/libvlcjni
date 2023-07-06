@@ -1,7 +1,7 @@
-From df10bbc3d1691f9e6aead6d07434a59e31a409b7 Mon Sep 17 00:00:00 2001
-Message-Id: <df10bbc3d1691f9e6aead6d07434a59e31a409b7.1688042866.git.dcn.mcnamara@gmail.com>
-In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
-References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+From 7960c8389d4dbe18166ed68eeb6ea5fcc5d177c9 Mon Sep 17 00:00:00 2001
+Message-Id: <7960c8389d4dbe18166ed68eeb6ea5fcc5d177c9.1688645790.git.thomas@gllm.fr>
+In-Reply-To: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
+References: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
 From: Alaric Senat <dev.asenat@posteo.net>
 Date: Tue, 4 Oct 2022 14:19:02 +0200
 Subject: [PATCH 21/21] upnp: android: implement net-intf priority
@@ -214,5 +214,5 @@ index 899f5ab9ae..1e1cb3d30f 100644
          free( psz_miface );
      #else
 -- 
-2.34.1
+2.39.2
 

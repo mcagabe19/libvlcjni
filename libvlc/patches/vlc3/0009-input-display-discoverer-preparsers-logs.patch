@@ -1,7 +1,7 @@
-From dc22d804b6e6902a12232e4e2d9a6b3b2628e8a0 Mon Sep 17 00:00:00 2001
-Message-Id: <dc22d804b6e6902a12232e4e2d9a6b3b2628e8a0.1688042866.git.dcn.mcnamara@gmail.com>
-In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
-References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+From 795d5c786022d33d28dc84e4702398eaa8d965d9 Mon Sep 17 00:00:00 2001
+Message-Id: <795d5c786022d33d28dc84e4702398eaa8d965d9.1688645790.git.thomas@gllm.fr>
+In-Reply-To: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
+References: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Thu, 3 Dec 2020 09:56:05 +0100
 Subject: [PATCH 09/21] input: display discoverer/preparsers logs
@@ -30,5 +30,5 @@ index ccfdf2b730..9d057b3b96 100644
      /* Make sure the interaction option is honored */
      if( !var_InheritBool( p_input, "interact" ) )
 -- 
-2.34.1
+2.39.2
 

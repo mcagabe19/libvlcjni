@@ -1,7 +1,7 @@
-From 25d1e90060fa2f26a3e821f6d4913b33b5a61944 Mon Sep 17 00:00:00 2001
-Message-Id: <25d1e90060fa2f26a3e821f6d4913b33b5a61944.1688042866.git.dcn.mcnamara@gmail.com>
-In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
-References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+From f0e4ea1cec3ef5426f0d033d907b9574db0c146d Mon Sep 17 00:00:00 2001
+Message-Id: <f0e4ea1cec3ef5426f0d033d907b9574db0c146d.1688645790.git.thomas@gllm.fr>
+In-Reply-To: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
+References: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
 From: Francois Cartegnie <fcvlcdev@free.fr>
 Date: Thu, 2 Dec 2021 10:06:28 +0100
 Subject: [PATCH 13/21] freetype: android: process formatted text nodes
@@ -57,5 +57,5 @@ index 08e7007c48..ab77d5acf5 100644
      return VLC_SUCCESS;
  }
 -- 
-2.34.1
+2.39.2
 

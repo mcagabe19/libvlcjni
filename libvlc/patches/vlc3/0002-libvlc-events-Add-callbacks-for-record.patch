@@ -1,7 +1,7 @@
-From 6b8be418f92efe4ede7943f63d1143a905e2f0b1 Mon Sep 17 00:00:00 2001
-Message-Id: <6b8be418f92efe4ede7943f63d1143a905e2f0b1.1688042866.git.dcn.mcnamara@gmail.com>
-In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
-References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+From 6cb214524d51a325e21842e1f028e99b4d38490c Mon Sep 17 00:00:00 2001
+Message-Id: <6cb214524d51a325e21842e1f028e99b4d38490c.1688645789.git.thomas@gllm.fr>
+In-Reply-To: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
+References: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
 From: Soomin Lee <bubu@mikan.io>
 Date: Thu, 27 Sep 2018 18:40:39 +0200
 Subject: [PATCH 02/21] libvlc: events: Add callbacks for record
@@ -85,5 +85,5 @@ index fda1091cc8..ab8be9e05c 100644
      return VLC_SUCCESS;
  }
 -- 
-2.34.1
+2.39.2
 

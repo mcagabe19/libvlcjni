@@ -1,7 +1,7 @@
-From 126bc02db1d5fba300ea440eef224259e33455f1 Mon Sep 17 00:00:00 2001
-Message-Id: <126bc02db1d5fba300ea440eef224259e33455f1.1688042866.git.dcn.mcnamara@gmail.com>
-In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
-References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+From 9184cc31aaeb3f5c0676d2c5daeaa4c17184d2a0 Mon Sep 17 00:00:00 2001
+Message-Id: <9184cc31aaeb3f5c0676d2c5daeaa4c17184d2a0.1688645789.git.thomas@gllm.fr>
+In-Reply-To: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
+References: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
 From: Pierre Ynard <linkfanel@yahoo.fr>
 Date: Mon, 20 Jul 2020 13:11:34 +0200
 Subject: [PATCH 07/21] stream_ReadLine: increase line length limit
@@ -43,5 +43,5 @@ index b94279b431..6be87f8551 100644
  {
      stream_priv_t *priv = (stream_priv_t *)s;
 -- 
-2.34.1
+2.39.2
 

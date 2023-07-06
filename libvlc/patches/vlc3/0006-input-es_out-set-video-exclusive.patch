@@ -1,7 +1,7 @@
-From 80ab81fa319d263bedbf1f0d2eae3da13f2aba96 Mon Sep 17 00:00:00 2001
-Message-Id: <80ab81fa319d263bedbf1f0d2eae3da13f2aba96.1688042866.git.dcn.mcnamara@gmail.com>
-In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
-References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+From 9906275a0bb42dc144a64021d02a75ca953f8fc4 Mon Sep 17 00:00:00 2001
+Message-Id: <9906275a0bb42dc144a64021d02a75ca953f8fc4.1688645789.git.thomas@gllm.fr>
+In-Reply-To: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
+References: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Thu, 2 Jul 2020 15:05:01 +0200
 Subject: [PATCH 06/21] input: es_out: set video exclusive
@@ -38,5 +38,5 @@ index b47f6c15dd..a5d15dba56 100644
      EsOutPropsInit( &p_sys->audio, true, p_input, ES_OUT_ES_POLICY_EXCLUSIVE,
                      "audio-track-id", "audio-track", "audio-language", "audio" );
 -- 
-2.34.1
+2.39.2
 

@@ -1,7 +1,7 @@
-From 55e75fe494e6831ffe8f31f5572a10ce92b77360 Mon Sep 17 00:00:00 2001
-Message-Id: <55e75fe494e6831ffe8f31f5572a10ce92b77360.1688042866.git.dcn.mcnamara@gmail.com>
-In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
-References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+From f6e6faaf1d6f8fc4cd72b9942e1b5a3d6bc992a9 Mon Sep 17 00:00:00 2001
+Message-Id: <f6e6faaf1d6f8fc4cd72b9942e1b5a3d6bc992a9.1688645790.git.thomas@gllm.fr>
+In-Reply-To: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
+References: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Wed, 4 Aug 2021 13:33:50 +0200
 Subject: [PATCH 11/21] media_player: backport fast seek argument
@@ -136,5 +136,5 @@ index 231e27030c..e644ab49e9 100644
      /* Output */
      bool            b_out_pace_control; /* XXX Move it ot es_sout ? */
 -- 
-2.34.1
+2.39.2
 

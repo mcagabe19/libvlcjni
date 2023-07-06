@@ -1,5 +1,5 @@
-From 445e17ea1f12223d61ce4d327a2843201dc52a7f Mon Sep 17 00:00:00 2001
-Message-Id: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+From 6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b Mon Sep 17 00:00:00 2001
+Message-Id: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Thu, 28 Mar 2019 15:23:48 +0100
 Subject: [PATCH 01/21] compat: Workaround sendmsg bug on android
@@ -90,5 +90,5 @@ index 010454a01c..1b36e3d574 100644
  }
  # endif
 -- 
-2.34.1
+2.39.2
 

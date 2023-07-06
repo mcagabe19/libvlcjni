@@ -1,7 +1,7 @@
-From 37565aab945e7624f9b5df20864ee9abb5e22fb4 Mon Sep 17 00:00:00 2001
-Message-Id: <37565aab945e7624f9b5df20864ee9abb5e22fb4.1688042866.git.dcn.mcnamara@gmail.com>
-In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
-References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+From ae14a29c261112202c058400acd826477e1e3574 Mon Sep 17 00:00:00 2001
+Message-Id: <ae14a29c261112202c058400acd826477e1e3574.1688645790.git.thomas@gllm.fr>
+In-Reply-To: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
+References: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
 From: Thomas Guillem <thomas@gllm.fr>
 Date: Tue, 10 Aug 2021 11:06:25 +0200
 Subject: [PATCH 12/21] audiotrack: rework DynamicsProcessing stop
@@ -53,5 +53,5 @@ index 1f70f00e46..cb290838ec 100644
      if( p_sys->timestamp.p_obj )
      {
 -- 
-2.34.1
+2.39.2
 

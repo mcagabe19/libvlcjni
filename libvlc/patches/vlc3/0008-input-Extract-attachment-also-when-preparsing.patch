@@ -1,7 +1,7 @@
-From 217aa6c2deac924ec0bef2a57f5924ac94c5f248 Mon Sep 17 00:00:00 2001
-Message-Id: <217aa6c2deac924ec0bef2a57f5924ac94c5f248.1688042866.git.dcn.mcnamara@gmail.com>
-In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
-References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+From ec818cdc2a4750da90f34797d8690c219848e6f1 Mon Sep 17 00:00:00 2001
+Message-Id: <ec818cdc2a4750da90f34797d8690c219848e6f1.1688645789.git.thomas@gllm.fr>
+In-Reply-To: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
+References: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Fri, 29 Nov 2019 15:41:08 +0100
 Subject: [PATCH 08/21] input: Extract attachment also when preparsing
@@ -1845,5 +1845,5 @@ index a15ba0d923..8ce2287e45 100644
 +vlc_input_attachment_Hold
 +vlc_input_attachment_Release
 -- 
-2.34.1
+2.39.2
 

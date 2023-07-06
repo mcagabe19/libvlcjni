@@ -1,7 +1,7 @@
-From 26c0d9d9b6768e0943fbde285c42ef0715db8446 Mon Sep 17 00:00:00 2001
-Message-Id: <26c0d9d9b6768e0943fbde285c42ef0715db8446.1688042866.git.dcn.mcnamara@gmail.com>
-In-Reply-To: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
-References: <445e17ea1f12223d61ce4d327a2843201dc52a7f.1688042866.git.dcn.mcnamara@gmail.com>
+From eff1ab70983415851c84c0538d6190929a7bd9b0 Mon Sep 17 00:00:00 2001
+Message-Id: <eff1ab70983415851c84c0538d6190929a7bd9b0.1688645789.git.thomas@gllm.fr>
+In-Reply-To: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
+References: <6fb4546c5bf2f6114ce6ddfd169499d9070d7e8b.1688645789.git.thomas@gllm.fr>
 From: Soomin Lee <bubu@mikan.io>
 Date: Mon, 1 Oct 2018 15:37:57 +0200
 Subject: [PATCH 04/21] access_output: file: Add error dialog for write/open
@@ -51,5 +51,5 @@ index ef4f2d18d1..55e4822b90 100644
                  break;
              flags &= ~O_EXCL;
 -- 
-2.34.1
+2.39.2
 
