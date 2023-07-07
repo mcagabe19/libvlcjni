@@ -2,7 +2,7 @@
 set -e
 
 LIBVLCJNI_SRC_DIR="$(cd "$(dirname "$0")"; pwd -P)/.."
-PATCHES_DIR=$LIBVLCJNI_SRC_DIR/libvlc/patches/vlc3
+PATCHES_DIR=$LIBVLCJNI_SRC_DIR/libvlc/patches
 #############
 # FUNCTIONS #
 #############
