@@ -85,6 +85,9 @@ android {
         into 'assets/lua/meta'
         exclude '**/*.txt'
     }
+    buildFeatures {
+        buildConfig true
+    }
 }
 
 clean {
