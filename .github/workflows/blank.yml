@@ -11,10 +11,8 @@ jobs:
     steps:
       - name: Checkout libvlcjni
         uses: actions/checkout@main
-      - name: Setup Git User
-        uses: fregante/setup-git-user@main
       - name: Setup libLVC
-        run: ./buildsystem/get-vlc.sh
+        run: ./buildsystem/get-vlc.sh && git config --global user.name "GitHub Actions" && git config ---global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Compile libVLC
         run: ./buildsystem/compile-libvlc.sh -a arm64
         env:
