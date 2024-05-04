@@ -1,0 +1,18 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup
+        run: ./buildsystem/get-vlc.sh
+        
+      - name: compile
+        run: ./buildsystem/compile-libvlc.sh -a arm64
+        env:
+           MAKEFLAGS: -j8
