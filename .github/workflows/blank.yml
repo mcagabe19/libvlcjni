@@ -27,3 +27,4 @@ jobs:
         run: ./buildsystem/compile-libvlc.sh -a arm64
         env:
            MAKEFLAGS: -j8
+           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
