@@ -9,10 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: setup
+      - name: Checkout libvlcjni
+        uses: actions/checkout@main
+      - name: Setup libLVC
         run: ./buildsystem/get-vlc.sh
-        
-      - name: compile
+      - name: Compile libVLC
         run: ./buildsystem/compile-libvlc.sh -a arm64
         env:
            MAKEFLAGS: -j8
