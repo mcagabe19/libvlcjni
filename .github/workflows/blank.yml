@@ -9,6 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Git User
+        uses: fregante/setup-git-user@main
       - name: Checkout libvlcjni
         uses: actions/checkout@main
       - name: Setup libLVC
