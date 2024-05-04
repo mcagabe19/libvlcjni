@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - name: Setup libLVC
-        run: apt install gettext && git config --global user.name "GitHub Actions" && git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com" && ./buildsystem/get-vlc.sh
+        run: sudo apt install gettext && git config --global user.name "GitHub Actions" && git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com" && ./buildsystem/get-vlc.sh
       - name: Compile libVLC
         run: ./buildsystem/compile-libvlc.sh -a arm64
         env:
