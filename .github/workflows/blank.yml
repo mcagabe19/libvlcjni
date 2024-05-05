@@ -9,7 +9,7 @@ jobs:
   build:
     strategy:
       matrix:
-        arcjh: [arm, arm64, x86, x86_64]
+        arch: [arm, arm64, x86, x86_64]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout libvlcjni
