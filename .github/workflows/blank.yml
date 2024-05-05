@@ -25,11 +25,20 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - name: Setup libLVC
-        run: | 
+        run: |
            DEBIAN_FRONTEND=noninteractive sudo apt-get -qq install -o Dpkg::Progress-Fancy="0" -o APT::Color="0" -o Dpkg::Use-Pty="0" gettext autopoint automake ant autopoint cmake build-essential libtool-bin lua5.2 liblua5.2-dev patch pkg-config protobuf-compiler ragel subversion unzip git flex python3 wget nasm meson ninja-build < /dev/null > /dev/null && git config --global user.name "GitHub Actions" && git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com" && ./buildsystem/get-vlc.sh
-           mkdir vlc/contrib/aarch64-linux-android
-           mkdir vlc/contrib/aarch64-linux-android/lib
-           sudo ln -s /usr/lib/x86_64-linux-gnu/liblua5.2.a /home/runner/work/libvlcjni/libvlcjni/vlc/contrib/aarch64-linux-android/lib/liblua.a
+           if [[ "${{ matrix.arch }}" == "arm" ]] ; then
+           export idk="arm-linux-androideabi"
+           elif [[ "${{ matrix.arch }}" == "arm64" ]] ; then
+           export idk="aarch64-linux-android"
+           elif [[ "${{ matrix.arch }}" == "x86" ]] ; then
+           export idk="i686-linux-android"
+           elif [[ "${{ matrix.arch }}" == "x86_64" ]] ; then
+           export idk="x86_64-linux-android"
+           fi
+           mkdir vlc/contrib/$idk
+           mkdir vlc/contrib/$idk/lib
+           sudo ln -s /usr/lib/x86_64-linux-gnu/liblua5.2.a /home/runner/work/libvlcjni/libvlcjni/vlc/contrib/$idk/lib/liblua.a
       - name: Compile libVLC
         run: ./buildsystem/compile-libvlc.sh -a ${{matrix.arch}} --no-jni
         env:
