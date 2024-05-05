@@ -31,7 +31,7 @@ jobs:
            mkdir vlc/contrib/aarch64-linux-android/lib
            sudo ln -s /usr/lib/x86_64-linux-gnu/liblua5.2.a /home/runner/work/libvlcjni/libvlcjni/vlc/contrib/aarch64-linux-android/lib/liblua.a
       - name: Compile libVLC
-        run: ./buildsystem/compile-libvlc.sh -a arm64 --no-jni
+        run: ./buildsystem/compile-libvlc.sh -a ${{matrix.arch}} --no-jni
         env:
            MAKEFLAGS: -j8
            ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
