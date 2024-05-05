@@ -7,6 +7,9 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        arcjh: [arm, arm64, x86, x86_64]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout libvlcjni
@@ -33,5 +36,9 @@ jobs:
            MAKEFLAGS: -j8
            ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
            ANDROID_NDK: ${{ steps.setup-ndk.outputs.ndk-path }}
-      - name: ignore
-        run: find | grep libvlc
+      - name: Upload Artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{matrix.arch}}
+          path: libvlc/jni/libs/*/*.so
+          if-no-files-found: error
