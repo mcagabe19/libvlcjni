@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - name: Setup libLVC
-        run: DEBIAN_FRONTEND=noninteractive sudo apt-get -qq install -o Dpkg::Progress-Fancy="0" -o APT::Color="0" -o Dpkg::Use-Pty="0" gettext autopoint automake ant autopoint cmake build-essential libtool-bin patch pkg-config protobuf-compiler ragel protoc subversion unzip git flex python3 wget nasm meson ninja < /dev/null > /dev/null && git config --global user.name "GitHub Actions" && git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com" && ./buildsystem/get-vlc.sh
+        run: DEBIAN_FRONTEND=noninteractive sudo apt-get -qq install -o Dpkg::Progress-Fancy="0" -o APT::Color="0" -o Dpkg::Use-Pty="0" gettext autopoint automake ant autopoint cmake build-essential libtool-bin patch pkg-config protobuf-compiler ragel subversion unzip git flex python3 wget nasm meson ninja-build < /dev/null > /dev/null && git config --global user.name "GitHub Actions" && git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com" && ./buildsystem/get-vlc.sh
       - name: Compile libVLC
         run: ./buildsystem/compile-libvlc.sh -a arm64
         env:
