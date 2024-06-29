@@ -266,7 +266,7 @@ VLC_BOOTSTRAP_ARGS="\
     --enable-dvdread \
     --enable-dvdnav \
     --disable-dca \
-    --enable-goom \
+    --disable-goom \
     --disable-chromaprint \
     --enable-lua \
     --disable-schroedinger \
@@ -366,8 +366,8 @@ VLC_CONFIGURE_ARGS="\
     --enable-libxml2 \
     --disable-caca \
     --enable-gles2 \
-    --enable-goom \
-    --enable-projectm \
+    --disable-goom \
+    --disable-projectm \
     --enable-sout \
     --enable-vorbis \
     --disable-faad \
