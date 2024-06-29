@@ -426,7 +426,6 @@ VLC_MODULE_BLACKLIST="
     gradient
     dtstofloat32
     logger
-    visual
     fb
     aout_file
     yuv
